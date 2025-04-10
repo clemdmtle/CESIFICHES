@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/public/css/style.css">
+        <!-- {% block stylesheets %}
+        {% endblock %} -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script src="/public/scripts/script.js" defer></script>
+        <!-- {% block scripts %}
+        {% endblock %}
+        <title>{% block title %}{% endblock %}</title> -->
+    </head>
+    <body>
+        <header>
+            <section class="menu-burger-container">
+                <div id="logo">
+        
+                    <img src="/public/assets/logo.svg" alt="Logo du site internet">
+                </div>
+                <div id="menu-burger">
+                    <button onclick="menuBurger()"><img src="/public/assets/menu_icon.svg" alt="Icone menu burger"></button>
+        
+                </div>
+            </section>
+
+            <div class="mobile-navbar-container" id="mobile-navbar-container">
+                <ul>
+                    <li><a href="?uri=/">Examens</a></li>
+                    <li><a href="?uri=recherche">Fiches</a></li>
+
+                    <li><a href="?uri=wishlist">Favoris</a></li>
+                    <li><a href="?uri=contact">Profil</a></li>
+
+                    
+                </ul>
+            </div>
+
+
+            <nav class="navbar-container">
+                <div class="nav-left">
+                    <a href="?uri=/">Examens</a>
+                    <a href="?uri=recherche">Fiches</a>
+                </div>
+                <div class="nav-right">
+                    <a href="?uri=contact">Favoris</a>
+                    <a href="?uri=contact">Profil</a>
+                </div>
+            </nav>
+
+        </header>
+        <main>
+            <!-- {% block main %}
+            {% endblock %} -->
+            <div id="scrollUp">
+                <a href="#top">
+                    <img src="/public/assets/fleche.svg" alt="Bouton qui remonte">
+                </a>
+            </div>
+
+            <script>
+                jQuery(function(){
+                    $(function () {
+                        // Afficher ou masquer le bouton "scrollUp" en fonction de la position du défilement
+                        $(window).scroll(function () {
+                            if ($(this).scrollTop() > 100 ) {
+                                $('#scrollUp').css('right','10px');
+                            } else {
+                                $('#scrollUp').removeAttr('style');
+                            }
+                        });
+
+                        // Ajouter l'effet de défilement en douceur lors du clic sur "scrollUp"
+                        $('#scrollUp').click(function () {
+                            $('html, body').animate({
+                                scrollTop: 0
+                            }, 600); // 800 ms pour l'effet de défilement en douceur
+                            return false; // Empêcher le comportement par défaut du clic
+                        });
+                    });
+                });
+            </script>
+        </main>
+    </body>
+</html>
