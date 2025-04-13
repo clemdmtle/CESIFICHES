@@ -52,7 +52,43 @@
 
         </header>
         <main>
-            
+            <h1>Fiches</h1>
+            <div class="recherche-filtres-container">
+                <div class="recherche-container">
+                    <input type="text" placeholder="Rechercher">
+                    <button id="bouton-fleche-recherche"><img src="/public/assets/loupe.svg" alt="Loupe de recherche"></button>
+                </div>
+                <div class="filtres-container">
+                    <button id="bouton-filtres">Filtres <img src="/public/assets/filtres.svg" alt="Filtres"></button>
+                </div>
+                <div class="ajouter-container">
+                    <button id="bouton-ajouter"><img src="/public/assets/bouton-ajouter.svg" alt="Ajouter une fiche"></button>
+                </div>
+            </div>
+
+            <div class="fiche-container">
+                <div class="gauche">
+                    <p id="type-fiche">CCTL</p>
+                </div>
+                <div class="v1"></div>
+                <div class="milieu">
+                    <p id="titre-fiche">HTML, CSS, Javascript</p>
+                    <p id="auteur-fiche">Par Clémence DUMONT</p>
+                    <div class="caracteristiques-container">
+                        <p class="caracteristiques-item" id="promo">A2 INFO</p>
+                        <p class="caracteristiques-item" id="bloc">Développement Web</p>
+                    </div>
+                    <div class="fichier-container">
+                        <img src="/public/assets/fichier.svg" alt="Nom du fichier">
+                        <p id="nomfichier">HTML, CSS, Javascript</p>
+                    </div>
+                </div>
+                <div class="v1"></div>
+                <div class="droite">
+                    <button><img src="/public/assets/ajouter-dossier.svg" alt="Ajouter au dossier"></button>
+                    <button><img src="/public/assets/telecharger-fichier.svg" alt="Télécharger un fichier"></button>
+                </div>
+            </div>
             <!-- {% block main %}
             {% endblock %} -->
             <div id="scrollUp">
