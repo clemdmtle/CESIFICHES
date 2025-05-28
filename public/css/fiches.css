@@ -1,7 +1,29 @@
+/*grille*/
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    "item-1 item-2 item-3";
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    padding: 5px;
+}
+
+.item-1 {
+    grid-area: item-1;
+}
+.item-2 {
+    grid-area: item-2;
+}
+.item-3 {
+    grid-area: item-3;
+}
+
 .recherche-container, .filtres-container {
     display: flex;
     background-color: #ECE6F0;
     width: fit-content;
+    height: 50px;
     border-radius: 28px;
     padding: 0 10px 0 10px;
     vertical-align: middle;
@@ -33,8 +55,17 @@
 
 .recherche-filtres-container {
     display: flex;
+    flex-direction: column;
     margin: 0 auto;
     justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.bas-recherche-container {
+    display: flex;
+    flex-direction: column;
     gap: 15px;
 }
 
@@ -122,4 +153,83 @@
 button {
     border: none;
     background-color: #ECE6F0;
+}
+
+.dossiers-container {
+    border-radius: 28px;
+    margin-top: 30px;
+    max-width: max-content;
+    max-height: 225px;
+    overflow-y: auto;
+}
+
+.dossiers-container .dossier-item button {
+    border-radius: 28px;
+    list-style: none;
+    background-color: #ECE6F0;
+    color: black;
+    width: 80%;
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.dossiers-container .dossier-item button:hover {
+    opacity: 70%;
+}
+
+.dossiers-container .dossier-item button:active {
+    opacity: 100%;
+}
+
+.boutons-fiches:hover {
+    opacity: 70%;
+}
+
+.boutons-fiches:active {
+    opacity: 100%;
+}
+
+@media (max-width: 900px){
+    .recherche-filtres-container, .droite, .bas-recherche-container {
+        flex-direction: row;
+    }
+
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fiche-container {
+        flex-direction: column;
+    }
+
+    .gauche {
+        display: none;
+    }
+
+    .dossiers-container {
+        max-height: 273px;
+        display: flex;
+        flex-direction: row;
+        max-width: 370px;
+        overflow-x: auto;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 500px){
+    .recherche-filtres-container {
+        flex-direction: column;
+    }
+
+    .recherche-container {
+        margin: 0 auto;
+    }
+
+    .bas-recherche-container {
+        margin: 0 auto;
+    }
+
 }

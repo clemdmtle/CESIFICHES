@@ -53,20 +53,26 @@
         </header>
         <main>
             <h1>Examens</h1>
-            <div class="recherche-filtres-container">
+            <section class="grid-container">
+                <div class="item-1">
+                <div class="recherche-filtres-container">
                 <div class="recherche-container">
                     <input type="text" placeholder="Rechercher">
                     <button id="bouton-fleche-recherche"><img src="/public/assets/loupe.svg" alt="Loupe de recherche"></button>
                 </div>
-                <div class="filtres-container">
+                <div class="bas-recherche-container">
+                    <div class="filtres-container">
                     <button id="bouton-filtres">Filtres <img src="/public/assets/filtres.svg" alt="Filtres"></button>
                 </div>
                 <div class="ajouter-container">
                     <button id="bouton-ajouter"><img src="/public/assets/bouton-ajouter.svg" alt="Ajouter une fiche"></button>
                 </div>
+                </div>
+            </div>
             </div>
 
-            <div class="fiche-container">
+            <div class="item-2">
+                <div class="fiche-container">
                 <div class="gauche">
                     <p id="type-fiche">CCTL</p>
                 </div>
@@ -85,10 +91,32 @@
                 </div>
                 <div class="v1"></div>
                 <div class="droite">
-                    <button><img src="/public/assets/ajouter-dossier.svg" alt="Ajouter au dossier"></button>
-                    <button><img src="/public/assets/telecharger-fichier.svg" alt="Télécharger un fichier"></button>
+                    <button class="boutons-fiches"><img src="/public/assets/ajouter-dossier.svg" alt="Ajouter au dossier"></button>
+                    <button class="boutons-fiches"><img src="/public/assets/telecharger-fichier.svg" alt="Télécharger un fichier"></button>
                 </div>
             </div>
+            </div>
+
+            <div class="item-3">
+                <div class="dossiers-container">
+                    <div class="dossier-item">
+                        <button>Dossier 1</button>
+                    </div>
+                    <div class="dossier-item">
+                        <button>Dossier 2</button>
+                    </div>
+                    <div class="dossier-item">
+                        <button>Dossier 3</button>
+                    </div>
+                    <div class="dossier-item">
+                        <button>Dossier 4</button>
+                    </div>
+                    <div class="dossier-item">
+                        <button>Ajouter un dossier</button>
+                    </div>
+                </div>
+            </div>
+            </section>
             <!-- {% block main %}
             {% endblock %} -->
             <div id="scrollUp">
