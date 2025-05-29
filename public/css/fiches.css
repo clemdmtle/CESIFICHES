@@ -19,7 +19,7 @@
     grid-area: item-3;
 }
 
-.recherche-container, .filtres-container {
+.recherche-container, #bouton-filtres {
     display: flex;
     background-color: #ECE6F0;
     width: fit-content;
@@ -61,6 +61,23 @@
     gap: 15px;
     margin-top: 30px;
     margin-left: 20px;
+}
+
+.filtres-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-filtres {
+    display: none;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 1px #ECE6F0;
+    width: fit-content;
+    gap: 20px;
 }
 
 .bas-recherche-container {
@@ -155,7 +172,9 @@ button {
     background-color: #ECE6F0;
 }
 
-.dossiers-container {
+.dossiers-container, #dossiers-container {
+    display: none;
+    flex-direction: column;
     border-radius: 28px;
     margin-top: 30px;
     max-width: max-content;
@@ -211,11 +230,16 @@ button {
 
     .dossiers-container {
         max-height: 273px;
-        display: flex;
+        display: none;
         flex-direction: row;
         max-width: 370px;
         overflow-x: auto;
         margin: 0 auto;
+    }
+
+    .form-filtres {
+        position: absolute;
+        margin-top: 70px;
     }
 }
 

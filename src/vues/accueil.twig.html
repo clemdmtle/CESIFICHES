@@ -9,6 +9,7 @@
         {% endblock %} -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
         <script src="/public/scripts/script.js" defer></script>
+        <script src="/public/scripts/fiches.js" defer></script>
         <!-- {% block scripts %}
         {% endblock %}
         <title>{% block title %}{% endblock %}</title> -->
@@ -28,8 +29,7 @@
 
             <div class="mobile-navbar-container" id="mobile-navbar-container">
                 <ul>
-                    <li><a href="?uri=/">Examens</a></li>
-                    <li><a href="?uri=fiches">Fiches</a></li>
+                    <li><a href="?uri=/">Examens et Fiches</a></li>
 
                     <li><a href="?uri=favoris">Favoris</a></li>
                     <li><a href="?uri=profil">Profil</a></li>
@@ -41,8 +41,7 @@
 
             <nav class="navbar-container">
                 <div class="nav-left">
-                    <a href="?uri=/">Examens</a>
-                    <a href="?uri=fiches">Fiches</a>
+                    <a href="?uri=/">Examens et Fiches</a>
                 </div>
                 <div class="nav-right">
                     <a href="?uri=favoris">Favoris</a>
@@ -52,7 +51,7 @@
 
         </header>
         <main>
-            <h1>Examens</h1>
+            <h1>Examens et Fiches</h1>
             <section class="grid-container">
                 <div class="item-1">
                 <div class="recherche-filtres-container">
@@ -62,8 +61,53 @@
                 </div>
                 <div class="bas-recherche-container">
                     <div class="filtres-container">
-                    <button id="bouton-filtres">Filtres <img src="/public/assets/filtres.svg" alt="Filtres"></button>
-                </div>
+                    <button id="bouton-filtres" onclick="afficherFiltres()">Filtres <img src="/public/assets/filtres.svg" alt="Filtres"></button>
+                    <form method="GET" class="form-filtres" id="form-filtres">
+                        <div class="filtres-item">
+                            <h4>Promo</h4>
+                            <div class="checkbox-container">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="promo" value="A1" id="A1">
+                                    <label for="A1">A1</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="promo" value="A2" id="A2">
+                                    <label for="A2">A2</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filtres-item">
+                            <h4>Bloc</h4>
+                            <div class="checkbox-container">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="bloc" value="reseaux" id="reseaux">
+                                    <label for="reseaux">Réseaux</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="bloc" value="systemes" id="systemes">
+                                    <label for="systemes">Systèmes Embarqués</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filtres-item">
+                            <h4>Type de fiche</h4>
+                            <div class="checkbox-container">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="type" value="CCTL" id="CCTL">
+                                    <label for="CCTL">CCTL</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="type" value="EI" id="EI">
+                                    <label for="EI">EI</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="type" value="fiche" id="fiche">
+                                    <label for="fiche">Fiche</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
                 <div class="ajouter-container">
                     <button id="bouton-ajouter"><img src="/public/assets/bouton-ajouter.svg" alt="Ajouter une fiche"></button>
                 </div>
@@ -91,14 +135,14 @@
                 </div>
                 <div class="v1"></div>
                 <div class="droite">
-                    <button class="boutons-fiches"><img src="/public/assets/ajouter-dossier.svg" alt="Ajouter au dossier"></button>
+                    <button class="boutons-fiches" onclick="afficherDossiers()"><img src="/public/assets/ajouter-dossier.svg" alt="Ajouter au dossier"></button>
                     <button class="boutons-fiches"><img src="/public/assets/telecharger-fichier.svg" alt="Télécharger un fichier"></button>
                 </div>
             </div>
             </div>
 
             <div class="item-3">
-                <div class="dossiers-container">
+                <div class="dossiers-container" id="dossiers-container">
                     <div class="dossier-item">
                         <button>Dossier 1</button>
                     </div>
