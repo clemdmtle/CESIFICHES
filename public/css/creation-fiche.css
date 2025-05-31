@@ -1,0 +1,146 @@
+.creation-fiche-item {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    margin-bottom: 20px;
+}
+
+.creation-fiche-item .type-fiche {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.creation-fiche-item label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.creation-fiche-item input {
+    width: 300px;
+    border: solid 1px #3D85C6;
+    height: 30px;
+}
+
+.creation-fiche-item .type-fiche input {
+    width: fit-content;
+    color: #3D85C6;
+}
+
+.creation-fiche-item .type-fiche label {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.form-gauche {
+    grid-area: form-gauche;
+    justify-self: end;
+}
+
+.form-droite {
+    margin-top: 35px;
+    justify-self: start;
+    grid-area: form-droite;
+    display: grid;
+    grid-template-areas: 
+    "fichier1"
+    "fichier2"
+    "fichier3"
+    "submit";
+}
+#form-creation-fiche {
+    display: grid;
+    grid-template-areas:
+    "form-gauche form-droite";
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 5px;
+}
+
+.fichier1 {
+    grid-area: fichier1;
+}
+
+.fichier2 {
+    grid-area: fichier2;
+}
+
+.fichier3 {
+    grid-area: fichier3;
+}
+
+.fichier1, .fichier2, .fichier3 {
+    display: flex;
+    flex-direction: column;
+    vertical-align: baseline;
+    justify-self: center;
+}
+
+.fichier1 label, .fichier2 label, .fichier3 label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #3D85C6;
+    width: fit-content;
+    padding: 15px;
+    color: white;
+    border-radius: 20px;
+}
+
+.fichier1 label:hover, .fichier2 label:hover, .fichier3 label:hover {
+    opacity: 70%;
+}
+
+.fichier1 label:active, .fichier2 label:active, .fichier3 label:active {
+    opacity: 100%;
+}
+
+.fichier1 img, .fichier2 img, .fichier3 img {
+    height: 2em;
+}
+
+.submit {
+    grid-area: submit;
+    justify-self: center;
+}
+
+#bouton-validation-form-fiche {
+    background-color: white;
+    border: solid 1px #3D85C6;
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
+#bouton-validation-form-fiche:hover{
+    background-color: #3D85C6;
+    color: white;
+}
+
+#bouton-validation-form-fiche:active{
+    background-color: white;
+    color: #3D85C6;
+}
+
+@media (max-width: 600px){
+    #form-creation-fiche {
+    display: grid;
+    grid-template-areas:
+    "form-gauche"
+    "form-droite";
+    grid-template-columns: 1fr;
+    }
+
+    .form-gauche, .form-droite {
+        justify-self: center;
+    }
+
+    .form-droite {
+        gap: 20px;
+    }
+
+    #bouton-validation-form-fiche{
+        margin-top: 40px;
+    }
+}

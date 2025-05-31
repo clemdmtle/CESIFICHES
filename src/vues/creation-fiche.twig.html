@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/public/css/style.css">
+        <link rel="stylesheet" href="/public/css/creation-fiche.css">
+        <!-- {% block stylesheets %}
+        {% endblock %} -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script src="/public/scripts/script.js" defer></script>
+        <!-- {% block scripts %}
+        {% endblock %}
+        <title>{% block title %}{% endblock %}</title> -->
+    </head>
+    <body>
+        <header>
+            <section class="menu-burger-container">
+                <div id="logo">
+        
+                    <img src="/public/assets/logo.svg" alt="Logo du site internet">
+                </div>
+                <div id="menu-burger">
+                    <button onclick="menuBurger()"><img src="/public/assets/menu_icon.svg" alt="Icone menu burger"></button>
+        
+                </div>
+            </section>
+
+            <div class="mobile-navbar-container" id="mobile-navbar-container">
+                <ul>
+                    <li><a href="?uri=/">Examens et Fiches</a></li>
+
+                    <li><a href="?uri=favoris">Favoris</a></li>
+                    <li><a href="?uri=profil">Profil</a></li>
+
+                    
+                </ul>
+            </div>
+
+
+            <nav class="navbar-container">
+                <div class="nav-left">
+                    <a href="?uri=/">Examens et Fiches</a>
+                </div>
+                <div class="nav-right">
+                    <a href="?uri=favoris">Favoris</a>
+                    <a href="?uri=profil">Profil</a>
+                </div>
+            </nav>
+
+        </header>
+        <main>
+            <h1>Créer une fiche</h1>
+            <section id="creation-fiche">
+                <form method="GET" id="form-creation-fiche">
+                    <div class="form-gauche">
+                        <div class="creation-fiche-item">
+                        <label for="titre">Titre</label>
+                        <input type="text" id="titre" name="titre">
+                    </div>
+                    <div class="creation-fiche-item">
+                        <label for="promotion">Promotion</label>
+                        <input type="text" id="promotion" name="promotion">
+                    </div>
+                    <div class="creation-fiche-item">
+                        <label for="bloc">Bloc</label>
+                        <input type="text" id="bloc" name="bloc">
+                    </div>
+                    <div class="creation-fiche-item">
+                        <label for="nom">Nom de la fiche</label>
+                        <input type="text" id="nom" name="nom">
+                    </div>
+                    <div class="creation-fiche-item" >
+                        <label for="type">Type de fichier</label>
+                        <div class="type-fiche">
+                            <input type="radio" id="type1" name="type" value="CCTL">
+                            <label for="type1">CCTL</label>
+                        </div>
+                        <div class="type-fiche">
+                            <input type="radio" id="type2" name="type" value="EI">
+                        <label for="type2">EI</label>
+                        </div>
+                        <div class="type-fiche">
+                            <input type="radio" id="type3" name="type" value="fiche">
+                        <label for="type3">Fiche</label>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-droite">
+                        <div class="fichier1">
+                            <label for="fichier1">Déposer le fichier 1 <img src="/public/assets/deposer-fichier.svg" alt="Déposer le fichier 1"></label>
+                            <input type="file" name="fichier1" hidden>
+                        </div>
+                        <div class="fichier2">
+                            <label for="fichier2">Déposer le fichier 2 <img src="/public/assets/deposer-fichier.svg" alt="Déposer le fichier 1"></label>
+                            <input type="file" name="fichier2" hidden>
+                        </div>
+                        <div class="fichier3">
+                            <label for="fichier3">Déposer le fichier 3 <img src="/public/assets/deposer-fichier.svg" alt="Déposer le fichier 1"></label>
+                            <input type="file" name="fichier3" hidden>
+                        </div>
+                        <div class="submit">
+                            <button type="submit" id="bouton-validation-form-fiche">Soumettre</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </section>
+            <!-- {% block main %}
+            {% endblock %} -->
+            <div id="scrollUp">
+                <a href="#top">
+                    <img src="/public/assets/fleche.svg" alt="Bouton qui remonte">
+                </a>
+            </div>
+
+            <script>
+                jQuery(function(){
+                    $(function () {
+                        // Afficher ou masquer le bouton "scrollUp" en fonction de la position du défilement
+                        $(window).scroll(function () {
+                            if ($(this).scrollTop() > 100 ) {
+                                $('#scrollUp').css('right','10px');
+                            } else {
+                                $('#scrollUp').removeAttr('style');
+                            }
+                        });
+
+                        // Ajouter l'effet de défilement en douceur lors du clic sur "scrollUp"
+                        $('#scrollUp').click(function () {
+                            $('html, body').animate({
+                                scrollTop: 0
+                            }, 600); // 800 ms pour l'effet de défilement en douceur
+                            return false; // Empêcher le comportement par défaut du clic
+                        });
+                    });
+                });
+            </script>
+        </main>
+    </body>
+</html>
