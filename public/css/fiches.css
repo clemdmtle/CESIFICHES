@@ -228,13 +228,14 @@ button {
         display: none;
     }
 
-    .dossiers-container {
+    #dossiers-container {
         max-height: 273px;
         display: none;
         flex-direction: row;
         max-width: 370px;
         overflow-x: auto;
         margin: 0 auto;
+        align-items: center;
     }
 
     .form-filtres {
