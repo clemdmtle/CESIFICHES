@@ -1,0 +1,42 @@
+.connexion-container {
+    justify-self: center;
+    text-align: right;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 50px;
+    border-radius: 28px;
+    border: solid 1px #3D85C6;
+}
+
+label {
+    font-size: 25px;
+    margin: 10px;
+}
+
+input {
+    height: 30px;
+    width: 300px;
+}
+#bouton-connexion {
+    background-color: #3D85C6;
+    color: white;
+    padding: 20px;
+    border-radius: 28px;
+    border: none;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+#bouton-connexion:hover {
+    background-color: white;
+    color: #3D85C6;
+    border: solid 1px #3D85C6;
+}
+
+#bouton-connexion:active {
+    background-color: #3D85C6;
+    color: white;
+}
