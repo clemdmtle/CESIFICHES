@@ -91,6 +91,14 @@
     background-color: transparent;
 }
 
+#bouton-ajouter:hover {
+    opacity: 70%;
+}
+
+#bouton-ajouter:active {
+    opacity: 100%;
+}
+
 .fiche-container {
     display: flex;
     background-color: #ECE6F0;

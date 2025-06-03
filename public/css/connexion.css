@@ -1,4 +1,4 @@
-.connexion-container {
+.connexion-container, .creation-compte-container {
     justify-self: center;
     text-align: right;
     margin-top: 150px;
@@ -8,6 +8,10 @@
     padding: 50px;
     border-radius: 28px;
     border: solid 1px #3D85C6;
+}
+
+.creation-compte-container {
+    margin-top: 80px;
 }
 
 label {
@@ -39,4 +43,18 @@ input {
 #bouton-connexion:active {
     background-color: #3D85C6;
     color: white;
+}
+
+@media (max-width: 900px){
+    .connexion-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .connexion-container, .creation-compte-container {
+        text-align: center;
+        align-items: center;
+        padding: 20px;
+    }
 }
