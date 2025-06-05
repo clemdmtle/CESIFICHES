@@ -66,9 +66,13 @@
 .filtres-container {
     display: flex;
     flex-direction: column;
+    position: relative; 
 }
 
 .form-filtres {
+    top: 60px;
+    left: 0;
+    z-index: 10;
     display: none;
     flex-direction: column;
     background-color: white;
@@ -215,6 +219,19 @@ button {
 }
 
 .boutons-fiches:active {
+    opacity: 100%;
+}
+
+#bouton-rechercher {
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#bouton-rechercher:hover{
+    opacity: 70%;
+}
+
+#bouton-rechercher:active{
     opacity: 100%;
 }
 

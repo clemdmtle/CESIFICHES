@@ -54,16 +54,19 @@
             <h1>Examens et Fiches</h1>
             <section class="grid-container">
                 <div class="item-1">
-                <div class="recherche-filtres-container">
-                <div class="recherche-container">
-                    <input type="text" placeholder="Rechercher">
-                    <button id="bouton-fleche-recherche"><img src="/public/assets/loupe.svg" alt="Loupe de recherche"></button>
-                </div>
+                
                 <div class="bas-recherche-container">
-                    <div class="filtres-container">
-                    <button id="bouton-filtres" onclick="afficherFiltres()">Filtres <img src="/public/assets/filtres.svg" alt="Filtres"></button>
-                    <form method="GET" class="form-filtres" id="form-filtres">
-                        <div class="filtres-item">
+                    
+                    <form method="GET" class="form-recherche">
+                        <div class="recherche-filtres-container">
+                <div class="recherche-container">
+                    <input type="text" placeholder="Rechercher" name="recherche" id="champ-recherche">
+                    <button id="bouton-fleche-recherche" type="submit"><img src="/public/assets/loupe.svg" alt="Loupe de recherche"></button>
+                </div>
+                <div class="filtres-container">
+                    <button id="bouton-filtres" onclick="afficherFiltres(event)">Filtres<img src="/public/assets/filtres.svg" alt="Filtres"></button>
+                        <div class="form-filtres" id="form-filtres">
+                            <div class="filtres-item">
                             <h4>Promo</h4>
                             <div class="checkbox-container">
                                 <div class="checkbox-item">
@@ -106,6 +109,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <button type="submit" id="bouton-rechercher">Rechercher</button>
+                        </div>
+                        </div>
                     </form>
                     </div>
                 <div class="ajouter-container">
@@ -116,21 +123,23 @@
             </div>
 
             <div class="item-2">
+                {%if fiches is not empty%}
+                    {%for fiche in fiches%}
                 <div class="fiche-container">
                 <div class="gauche">
                     <p id="type-fiche">CCTL</p>
                 </div>
                 <div class="v1"></div>
                 <div class="milieu">
-                    <p id="titre-fiche">HTML, CSS, Javascript</p>
-                    <p id="auteur-fiche">Par Clémence DUMONT</p>
+                    <p id="titre-fiche">{{fiche.titre}}</p>
+                    <p id="auteur-fiche">{{fiche.prenom}} {{fiche.nom}}</p>
                     <div class="caracteristiques-container">
-                        <p class="caracteristiques-item" id="promo">A2 INFO</p>
-                        <p class="caracteristiques-item" id="bloc">Développement Web</p>
+                        <p class="caracteristiques-item" id="promo">{{fiche.annee}}</p>
+                        <p class="caracteristiques-item" id="bloc">{{fiche.bloc}}</p>
                     </div>
                     <div class="fichier-container">
                         <img src="/public/assets/fichier.svg" alt="Nom du fichier">
-                        <p id="nomfichier">HTML, CSS, Javascript</p>
+                        <p id="nomfichier">{{fiche.chemin_fichier1}}</p>
                     </div>
                 </div>
                 <div class="v1"></div>
@@ -139,6 +148,8 @@
                     <button class="boutons-fiches"><img src="/public/assets/telecharger-fichier.svg" alt="Télécharger un fichier"></button>
                 </div>
             </div>
+            {%endfor%}
+            {%endif%}
             </div>
 
             <div class="item-3">

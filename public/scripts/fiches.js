@@ -10,7 +10,8 @@ function afficherDossiers(){
 }
 
 let etatFiltres = false;
-function afficherFiltres(){
+function afficherFiltres(event){
+    if(event) event.preventDefault();  // empêche la soumission du formulaire
     etatFiltres = !etatFiltres;
     if (etatFiltres==true){
         document.getElementById("form-filtres").style.display = "flex";
