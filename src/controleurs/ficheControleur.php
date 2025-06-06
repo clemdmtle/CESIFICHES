@@ -31,4 +31,35 @@ class FicheControleur extends Controleur {
             'fiches' => $fiches
         ]);
     }
+
+    public function afficherFichesProfil(){
+        $conditions = [];
+
+        $idUtilisateur = 1;
+        if (isset($idUtilisateur)){
+            $conditions["utilisateur"] = $idUtilisateur; //en attendant de gérer les sessions
+       // if (isset($_GET["id_utilisateur"])){
+        //    $conditions['utilisateur'] = $_GET['utilisateur'];
+        } else {
+            $this->afficherFiches();
+        }
+        if (isset($_GET['recherche'])){
+            $conditions['recherche'] = $_GET['recherche'];
+        } 
+        if (isset($_GET['type'])){
+            $conditions['type'] = $_GET['type'];
+        } 
+        if (isset($_GET['annee'])){
+            $conditions['annee'] = $_GET['annee'];
+        } 
+        if (isset($_GET['bloc'])){
+            $conditions['bloc'] = $_GET['bloc'];
+        } 
+
+        $fichesProfil = $this->model->afficherFiches($conditions);
+
+        echo $this->twig->render('profil.twig.html', [
+            'fichesProfil' => $fichesProfil
+        ]);
+    }
 }

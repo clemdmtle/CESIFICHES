@@ -116,21 +116,23 @@
             </div>
 
             <div class="item-2">
+                {%if fichesProfil is not empty%}
+                {%for fiche in fichesProfil%}
                 <div class="fiche-container">
                 <div class="gauche">
-                    <p id="type-fiche">CCTL</p>
+                    <p id="type-fiche">{{fiche.type}}</p>
                 </div>
                 <div class="v1"></div>
                 <div class="milieu">
-                    <p id="titre-fiche">HTML, CSS, Javascript</p>
-                    <p id="auteur-fiche">Par Clémence DUMONT</p>
+                    <p id="titre-fiche">{{fiche.titre}}</p>
+                    <p id="auteur-fiche">{{fiche.prenom}} {{fiche.nom}}</p>
                     <div class="caracteristiques-container">
-                        <p class="caracteristiques-item" id="promo">A2 INFO</p>
-                        <p class="caracteristiques-item" id="bloc">Développement Web</p>
+                        <p class="caracteristiques-item" id="promo">{{fiche.annee}}</p>
+                        <p class="caracteristiques-item" id="bloc">{{fiche.bloc}}</p>
                     </div>
                     <div class="fichier-container">
                         <img src="/public/assets/fichier.svg" alt="Nom du fichier">
-                        <p id="nomfichier">HTML, CSS, Javascript</p>
+                        <p id="nomfichier">{{fiche.chemin_fichier1}}</p>
                     </div>
                 </div>
                 <div class="v1"></div>
@@ -143,6 +145,10 @@
                     <button class="boutons-fiches"><img src="/public/assets/supprimer-fichier-petit.svg" alt="Supprimer un fichier"></button>
                 </div>
             </div>
+            {%endfor%}
+            {%else%}
+            <p>Aucune fiche à afficher</p>
+                {%endif%}
             </div>
 
             <div class="item-3">

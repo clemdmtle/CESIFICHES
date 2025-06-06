@@ -37,6 +37,9 @@ switch ($uri) {
         $controleur = new FicheControleur($pdo, $twig);
         $controleur->afficherFiches();
         break;
+    case 'profil':
+        $controleur = new FicheControleur($pdo, $twig);
+        $controleur->afficherFichesProfil();
     default:
         http_response_code(404);
         break;

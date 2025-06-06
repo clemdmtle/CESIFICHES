@@ -9,7 +9,7 @@ class FicheModele extends Modele {
     }
 
     public function afficherFiches($conditions){
-        $sql = "SELECT * FROM Fichier f
+        $sql = "SELECT * FROM Fiche f
         INNER JOIN Annee a
         ON a.id_annee = f.id_annee
         INNER JOIN Bloc b 
@@ -45,6 +45,11 @@ class FicheModele extends Modele {
                 OR b.bloc LIKE :motCle
             )";
             $params[':motCle'] = "%" . $conditions["recherche"] . "%";
+        }
+
+        if (!empty($conditions["utilisateur"])){
+            $sql .= " AND u.id_utilisateur = :utilisateur";
+            $params[':utilisateur'] = $conditions["utilisateur"];
         }
 
         $stmt = $this->pdo->prepare($sql);
