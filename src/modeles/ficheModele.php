@@ -57,4 +57,15 @@ class FicheModele extends Modele {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function supprimerFiche($idFiche){
+        $sql1 = "DELETE FROM contenir WHERE id_fiche = :idFiche";
+        $stmt1 = $this->pdo->prepare($sql1);
+        $stmt1->execute([':idFiche' => $idFiche]);
+
+        $sql2 = "DELETE FROM fiche WHERE id_fiche = :idFiche";
+        $params[':idFiche'] = $idFiche;
+        $stmt2 = $this->pdo->prepare($sql2);
+        $stmt2->execute($params);
+    }
 }

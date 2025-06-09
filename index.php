@@ -40,6 +40,11 @@ switch ($uri) {
     case 'profil':
         $controleur = new FicheControleur($pdo, $twig);
         $controleur->afficherFichesProfil();
+        break;
+    case 'supprimer_fiche':
+        $controleur = new FicheControleur($pdo, $twig);
+        $controleur->supprimerFiche();
+        break;
     default:
         http_response_code(404);
         break;

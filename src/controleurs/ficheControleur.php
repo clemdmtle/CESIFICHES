@@ -62,4 +62,13 @@ class FicheControleur extends Controleur {
             'fichesProfil' => $fichesProfil
         ]);
     }
+
+    public function supprimerFiche(){
+        $idFiche = isset($_GET['id']) ? $_GET['id'] : null;
+        if (!empty($idFiche)) {
+            $this->model->supprimerFiche($idFiche);
+        }
+        header("Location: ?uri=profil");
+        exit();
+    }
 }
