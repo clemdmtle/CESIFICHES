@@ -45,6 +45,13 @@ switch ($uri) {
         $controleur = new FicheControleur($pdo, $twig);
         $controleur->supprimerFiche();
         break;
+    case 'creation_fiche':
+        echo $twig->render('creation-fiche.twig.html');
+        break;
+    case 'creer_fiche':
+        $controleur = new FicheControleur($pdo, $twig);
+        $controleur->creerFiche();
+        break;
     default:
         http_response_code(404);
         break;

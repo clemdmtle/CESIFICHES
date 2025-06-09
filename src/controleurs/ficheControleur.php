@@ -71,4 +71,23 @@ class FicheControleur extends Controleur {
         header("Location: ?uri=profil");
         exit();
     }
+
+    public function creerFiche(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            $data = [];
+
+            $data['titre'] = $_POST['titre'] ? htmlspecialchars($_POST['titre']) : NULL;
+            $data['type'] = $_POST['type'] ? htmlspecialchars($_POST['type']) : NULL;
+            $data['annee'] = $_POST['promotion'] ? htmlspecialchars($_POST['promotion']) : NULL;
+            $data['bloc'] = $_POST['bloc'] ? htmlspecialchars($_POST['bloc']) : NULL;
+            $data['chemin_fichier1'] = "chemin/fichier"; //$data['chemin_fichier1'] = $_POST['fichier1'] ? htmlspecialchars($_POST['fichier1']) : NULL;
+            $data['chemin_fichier2'] = $_POST['fichier2'] ? htmlspecialchars($_POST['fichier2']) : NULL;
+            $data['chemin_fichier3'] = $_POST['fichier3'] ? htmlspecialchars($_POST['fichier3']) : NULL;
+            $data['date_ajout'] = date('Y-m-d H:i:s');
+            $data['id_utilisateur'] = 1; //$data['id_utilisateur'] = $_SESSION['id_utilisateur'];
+
+            $this->model->creerFiche($data);
+        }
+    }
 }

@@ -52,7 +52,7 @@
         <main>
             <h1>Créer une fiche</h1>
             <section id="creation-fiche">
-                <form method="GET" id="form-creation-fiche">
+                <form method="POST" id="form-creation-fiche" action="?uri=creer_fiche">
                     <div class="form-gauche">
                         <div class="creation-fiche-item">
                         <label for="titre">Titre</label>
@@ -65,10 +65,6 @@
                     <div class="creation-fiche-item">
                         <label for="bloc">Bloc</label>
                         <input type="text" id="bloc" name="bloc">
-                    </div>
-                    <div class="creation-fiche-item">
-                        <label for="nom">Nom de la fiche</label>
-                        <input type="text" id="nom" name="nom">
                     </div>
                     <div class="creation-fiche-item" >
                         <label for="type">Type de fichier</label>
