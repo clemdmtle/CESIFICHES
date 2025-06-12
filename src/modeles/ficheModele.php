@@ -14,26 +14,41 @@ class FicheModele extends Modele {
         INNER JOIN Annee a
         ON a.id_annee = f.id_annee
         INNER JOIN Bloc b 
-        ON b.id_annee = a.id_annee
+        ON b.id_bloc = f.id_bloc
         INNER JOIN Utilisateur u
         ON u.id_utilisateur = f.id_utilisateur
         WHERE 1=1";
 
         $params = [];
 
-        if (!empty($conditions["type"]) && in_array($conditions["type"], ["CCTL", "EI", "Fiche"])) {
-            $sql .= " AND f.type = :type";
-            $params[':type'] = $conditions["type"];
+        if (!empty($conditions["type"])) {
+            $placeholders = [];
+            foreach ($conditions["type"] as $i => $val) {
+                $ph = ":type$i";
+                $placeholders[] = $ph;
+                $params[$ph] = $val;
+            }
+            $sql .= " AND f.type IN (" . implode(',', $placeholders) . ")";
         }
 
         if (!empty($conditions["annee"])) {
-            $sql .= " AND a.annee = :annee";
-            $params[':annee'] = $conditions["annee"];
+            $placeholders = [];
+            foreach ($conditions["annee"] as $index => $val) {
+                $ph = ":annee$index";
+                $placeholders[] = $ph;
+                $params[$ph] = $val;
+            }
+            $sql .= " AND a.annee IN (" . implode(',', $placeholders) . ")";
         }
 
         if (!empty($conditions["bloc"])) {
-            $sql .= " AND b.bloc = :bloc";
-            $params[':bloc'] = $conditions["bloc"];
+            $placeholders = [];
+            foreach ($conditions["bloc"] as $i => $val) {
+                $ph = ":bloc$i";
+                $placeholders[] = $ph;
+                $params[$ph] = $val;
+            }
+            $sql .= " AND b.bloc IN (" . implode(',', $placeholders) . ")";
         }
 
         if (!empty($conditions["recherche"])) {
@@ -142,4 +157,37 @@ class FicheModele extends Modele {
 
         header('Location: ?uri=/');
     }
+
+    public function afficherFiltres($colonne, $annee = null){
+        if ($colonne == "a.annee") {
+        $sql = "SELECT DISTINCT annee FROM Annee ORDER BY annee";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+        $sql = "SELECT DISTINCT $colonne FROM Fiche f
+        INNER JOIN Annee a
+        ON f.id_annee = a.id_annee
+        INNER JOIN Bloc b
+        ON f.id_bloc = b.id_bloc";
+
+        $params = [];
+        // if ($annee){
+        //     $queryIdAnnee = "SELECT DISTINCT id_annee FROM Annee WHERE annee = :annee";
+        //     $stmtIdAnnee = $this->pdo->prepare($queryIdAnnee);
+        //     $stmtIdAnnee->execute([':annee' => $annee]);
+        //     $idAnnee = $stmtIdAnnee->fetchColumn();
+
+        //     $sql .= " WHERE b.id_annee = :idAnnee";
+        //     $params[':idAnnee'] = $idAnnee;
+        // } 
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }

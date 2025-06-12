@@ -11,24 +11,29 @@ class FicheControleur extends Controleur {
     }
 
     public function afficherFiches(){
-        $conditions = [];
-        if (isset($_GET['recherche'])){
-            $conditions['recherche'] = $_GET['recherche'];
-        } 
-        if (isset($_GET['type'])){
-            $conditions['type'] = $_GET['type'];
-        } 
-        if (isset($_GET['annee'])){
-            $conditions['annee'] = $_GET['annee'];
-        } 
-        if (isset($_GET['bloc'])){
-            $conditions['bloc'] = $_GET['bloc'];
-        } 
+        $conditions = [
+        'type' => isset($_GET['type']) ? (array) $_GET['type'] : [],
+        'annee' => isset($_GET['promo']) ? (array) $_GET['promo'] : [],
+        'bloc' => isset($_GET['bloc']) ? (array) $_GET['bloc'] : [],
+        'recherche' => $_GET['recherche'] ?? '',
+        'utilisateur' => $_GET['utilisateur'] ?? null
+        ];
 
         $fiches = $this->model->afficherFiches($conditions);
+        $annees = [];
+        $blocs = [];
+
+        $annees = $this->model->afficherFiltres("a.annee");
+        $blocs = $this->model->afficherFiltres("b.bloc");
+        $types = $this->model->afficherFiltres("f.type");
+        //$blocs = isset($_GET['promo']) ? $this->model->afficherFiltres("b.bloc", $_GET['promo']) : [];
+
 
         echo $this->twig->render('accueil.twig.html', [
-            'fiches' => $fiches
+            'fiches' => $fiches,
+            'annees' => $annees,
+            'blocs' => $blocs,
+            'types' => $types
         ]);
     }
 
@@ -78,7 +83,7 @@ class FicheControleur extends Controleur {
             $data = [];
 
             $data['titre'] = $_POST['titre'] ? htmlspecialchars($_POST['titre']) : NULL;
-            $data['type'] = $_POST['type'] ? htmlspecialchars($_POST['type']) : NULL;
+            $data['type'] = $_POST['type'] ? ucfirst(strtolower(htmlspecialchars($_POST['type']))) : NULL;
             $data['annee'] = $_POST['promotion'] ? htmlspecialchars($_POST['promotion']) : NULL;
             $data['bloc'] = $_POST['bloc'] ? htmlspecialchars($_POST['bloc']) : NULL;
             $data['chemin_fichier1'] = "chemin/fichier"; //$data['chemin_fichier1'] = $_POST['fichier1'] ? htmlspecialchars($_POST['fichier1']) : NULL;

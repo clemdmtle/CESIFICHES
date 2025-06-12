@@ -68,44 +68,44 @@
                         <div class="form-filtres" id="form-filtres">
                             <div class="filtres-item">
                             <h4>Promo</h4>
+                            {%if annees is not empty%}
                             <div class="checkbox-container">
+                                {%for annee in annees%}
                                 <div class="checkbox-item">
-                                    <input type="checkbox" name="promo" value="A1" id="A1">
-                                    <label for="A1">A1</label>
+                                    <input type="checkbox" name="promo[]" value="{{annee.annee}}" id="{{annee.annee}}">
+                                    <label for="{{annee.annee}}">{{annee.annee}}</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" name="promo" value="A2" id="A2">
-                                    <label for="A2">A2</label>
-                                </div>
+                                {%endfor%}
                             </div>
+                            {%endif%}
                         </div>
                         <div class="filtres-item">
                             <h4>Bloc</h4>
+                            {%if blocs is not empty%}
                             <div class="checkbox-container">
+                                {%for bloc in blocs%}
                                 <div class="checkbox-item">
-                                    <input type="checkbox" name="bloc" value="reseaux" id="reseaux">
-                                    <label for="reseaux">Réseaux</label>
+                                    <input type="checkbox" name="bloc[]" value="{{bloc.bloc}}" id="{{bloc.bloc}}">
+                                    <label for="{{bloc.bloc}}">{{bloc.bloc}}</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" name="bloc" value="systemes" id="systemes">
-                                    <label for="systemes">Systèmes Embarqués</label>
-                                </div>
+                                {%endfor%}
                             </div>
+                            {%endif%}
                         </div>
                         <div class="filtres-item">
                             <h4>Type de fiche</h4>
                             <div class="checkbox-container">
                                 <div class="checkbox-item">
-                                    <input type="checkbox" name="type" value="CCTL" id="CCTL">
+                                    <input type="checkbox" name="type[]" value="CCTL" id="CCTL">
                                     <label for="CCTL">CCTL</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input type="checkbox" name="type" value="EI" id="EI">
+                                    <input type="checkbox" name="type[]" value="EI" id="EI">
                                     <label for="EI">EI</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input type="checkbox" name="type" value="fiche" id="fiche">
-                                    <label for="fiche">Fiche</label>
+                                    <input type="checkbox" name="type[]" value="Fiche" id="Fiche">
+                                    <label for="Fiche">Fiche</label>
                                 </div>
                             </div>
                         </div>
@@ -115,6 +115,7 @@
                         </div>
                     </form>
                     </div>
+                    <a href="?uri=/" id="reinitialiser-filtres">Réinitialiser les filtres</a>
                 <div class="ajouter-container">
                     <a href="?uri=creation_fiche" id="bouton-ajouter"><img src="/public/assets/bouton-ajouter.svg" alt="Ajouter une fiche"></a>
                 </div>
@@ -149,6 +150,8 @@
                 </div>
             </div>
             {%endfor%}
+            {%else%}
+            <p id="sans-resultat">Aucune fiche ne correspond à votre recherche, veuillez modifier vos critères.</p>
             {%endif%}
             </div>
 

@@ -235,6 +235,18 @@ button {
     opacity: 100%;
 }
 
+#sans-resultat {
+    text-align: center;
+}
+
+#reinitialiser-filtres {
+    background-color: #ECE6F0;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 28px;
+    font-size: 14px;
+}
+
 @media (max-width: 900px){
     .recherche-filtres-container, .droite, .bas-recherche-container {
         flex-direction: row;
