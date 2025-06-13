@@ -38,7 +38,42 @@ class FicheControleur extends Controleur {
     }
 
     public function afficherFichesProfil(){
-        $conditions = [];
+    //     $conditions = [];
+
+    //     $idUtilisateur = 1;
+    //     if (isset($idUtilisateur)){
+    //         $conditions["utilisateur"] = $idUtilisateur; //en attendant de gérer les sessions
+    //    // if (isset($_GET["id_utilisateur"])){
+    //     //    $conditions['utilisateur'] = $_GET['utilisateur'];
+    //     } else {
+    //         $this->afficherFiches();
+    //     }
+    //     if (isset($_GET['recherche'])){
+    //         $conditions['recherche'] = $_GET['recherche'];
+    //     } 
+    //     if (isset($_GET['type'])){
+    //         $conditions['type'] = $_GET['type'];
+    //     } 
+    //     if (isset($_GET['annee'])){
+    //         $conditions['annee'] = $_GET['annee'];
+    //     } 
+    //     if (isset($_GET['bloc'])){
+    //         $conditions['bloc'] = $_GET['bloc'];
+    //     } 
+
+    //     $fichesProfil = $this->model->afficherFiches($conditions);
+
+    //     echo $this->twig->render('profil.twig.html', [
+    //         'fichesProfil' => $fichesProfil
+    //     ]);
+
+        ///////
+        $conditions = [
+        'type' => isset($_GET['type']) ? (array) $_GET['type'] : [],
+        'annee' => isset($_GET['promo']) ? (array) $_GET['promo'] : [],
+        'bloc' => isset($_GET['bloc']) ? (array) $_GET['bloc'] : [],
+        'recherche' => $_GET['recherche'] ?? ''
+        ];
 
         $idUtilisateur = 1;
         if (isset($idUtilisateur)){
@@ -48,23 +83,22 @@ class FicheControleur extends Controleur {
         } else {
             $this->afficherFiches();
         }
-        if (isset($_GET['recherche'])){
-            $conditions['recherche'] = $_GET['recherche'];
-        } 
-        if (isset($_GET['type'])){
-            $conditions['type'] = $_GET['type'];
-        } 
-        if (isset($_GET['annee'])){
-            $conditions['annee'] = $_GET['annee'];
-        } 
-        if (isset($_GET['bloc'])){
-            $conditions['bloc'] = $_GET['bloc'];
-        } 
 
         $fichesProfil = $this->model->afficherFiches($conditions);
+        $annees = [];
+        $blocs = [];
+
+        $annees = $this->model->afficherFiltres("a.annee");
+        $blocs = $this->model->afficherFiltres("b.bloc");
+        $types = $this->model->afficherFiltres("f.type");
+        //$blocs = isset($_GET['promo']) ? $this->model->afficherFiltres("b.bloc", $_GET['promo']) : [];
+
 
         echo $this->twig->render('profil.twig.html', [
-            'fichesProfil' => $fichesProfil
+            'fichesProfil' => $fichesProfil,
+            'annees' => $annees,
+            'blocs' => $blocs,
+            'types' => $types
         ]);
     }
 
