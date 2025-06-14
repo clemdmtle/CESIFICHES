@@ -1,12 +1,8 @@
-let etatBoutonDossier = false;
-
-function afficherDossiers(){
-    etatBoutonDossier = !etatBoutonDossier;
-    if (etatBoutonDossier==true){
-        document.getElementById("dossiers-container").style.display = "flex";
-    } else {
-        document.getElementById("dossiers-container").style.display = "none";
-    }
+function afficherDossiers(button) {
+    const ficheWrapper = button.closest('.sous-item-2');
+    const dossierContainer = ficheWrapper.querySelector('.dossiers-container');
+    
+    dossierContainer.classList.toggle('visible');
 }
 
 let etatFiltres = false;
