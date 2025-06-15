@@ -52,32 +52,33 @@
         <main>
             <h1>Créer une fiche</h1>
             <section id="creation-fiche">
-                <form method="POST" id="form-creation-fiche" action="?uri=creer_fiche">
+                <form method="POST" id="form-creation-fiche" action="?uri=creer_fiche" enctype="multipart/form-data">
+                    <input type="hidden" name="id_fiche" value="{{ ficheAModifier.id_fiche is defined ? ficheAModifier.id_fiche : '' }}">
                     <div class="form-gauche">
                         <div class="creation-fiche-item">
                         <label for="titre">Titre</label>
-                        <input type="text" id="titre" name="titre">
+                        <input type="text" id="titre" name="titre" value="{{ ficheAModifier.titre is defined ? ficheAModifier.titre : '' }}">
                     </div>
                     <div class="creation-fiche-item">
                         <label for="promotion">Promotion</label>
-                        <input type="text" id="promotion" name="promotion">
+                        <input type="text" id="promotion" name="promotion" value="{{ ficheAModifier.annee is defined ? ficheAModifier.annee : '' }}">
                     </div>
                     <div class="creation-fiche-item">
                         <label for="bloc">Bloc</label>
-                        <input type="text" id="bloc" name="bloc">
+                        <input type="text" id="bloc" name="bloc" value="{{ ficheAModifier.bloc is defined ? ficheAModifier.bloc : '' }}">
                     </div>
                     <div class="creation-fiche-item" >
                         <label for="type">Type de fichier</label>
                         <div class="type-fiche">
-                            <input type="radio" id="type1" name="type" value="CCTL">
+                            <input type="radio" id="type1" name="type" value="CCTL" {{ ficheAModifier.type is defined and ficheAModifier.type|upper == 'CCTL' ? 'checked' : '' }}>
                             <label for="type1">CCTL</label>
                         </div>
                         <div class="type-fiche">
-                            <input type="radio" id="type2" name="type" value="EI">
+                            <input type="radio" id="type2" name="type" value="EI" {{ ficheAModifier.type is defined and ficheAModifier.type|upper == 'EI' ? 'checked' : '' }}>
                         <label for="type2">EI</label>
                         </div>
                         <div class="type-fiche">
-                            <input type="radio" id="type3" name="type" value="fiche">
+                            <input type="radio" id="type3" name="type" value="fiche" {{ ficheAModifier.type is defined and ficheAModifier.type|lower == 'fiche' ? 'checked' : '' }}>
                         <label for="type3">Fiche</label>
                         </div>
                     </div>

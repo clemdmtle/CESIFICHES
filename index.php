@@ -41,6 +41,10 @@ switch ($uri) {
         $controleur = new FicheControleur($pdo, $twig);
         $controleur->afficherFichesProfil();
         break;
+    case 'modifier_fiche':
+        $controleur = new FicheControleur($pdo, $twig);
+        $controleur->recolterFicheAModifier();
+        break;
     case 'supprimer_fiche':
         $controleur = new FicheControleur($pdo, $twig);
         $controleur->supprimerFiche();

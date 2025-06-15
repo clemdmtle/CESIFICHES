@@ -113,20 +113,47 @@ class FicheControleur extends Controleur {
 
     public function creerFiche(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-
             $data = [];
 
             $data['titre'] = $_POST['titre'] ? htmlspecialchars($_POST['titre']) : NULL;
-            $data['type'] = $_POST['type'] ? ucfirst(strtolower(htmlspecialchars($_POST['type']))) : NULL;
+            $data['type'] = $_POST['type'] ? htmlspecialchars($_POST['type']) : NULL;
             $data['annee'] = $_POST['promotion'] ? htmlspecialchars($_POST['promotion']) : NULL;
             $data['bloc'] = $_POST['bloc'] ? htmlspecialchars($_POST['bloc']) : NULL;
-            $data['chemin_fichier1'] = "chemin/fichier"; //$data['chemin_fichier1'] = $_POST['fichier1'] ? htmlspecialchars($_POST['fichier1']) : NULL;
-            $data['chemin_fichier2'] = $_POST['fichier2'] ? htmlspecialchars($_POST['fichier2']) : NULL;
-            $data['chemin_fichier3'] = $_POST['fichier3'] ? htmlspecialchars($_POST['fichier3']) : NULL;
+            $data['chemin_fichier1'] = "chemin/fichier"; //$data['
+            // chemin_fichier1'] = $_POST['fichier1'] ? htmlspecialchars($_POST['fichier1']) : NULL;
+            $data['chemin_fichier2'] = isset($_FILES['fichier2']) && $_FILES['fichier2']['error'] === UPLOAD_ERR_OK
+            ? 'uploads/' . basename($_FILES['fichier2']['name'])
+            : null;
+
+            $data['chemin_fichier3'] = isset($_FILES['fichier3']) && $_FILES['fichier3']['error'] === UPLOAD_ERR_OK
+            ? 'uploads/' . basename($_FILES['fichier3']['name'])
+            : null;
             $data['date_ajout'] = date('Y-m-d H:i:s');
             $data['id_utilisateur'] = 1; //$data['id_utilisateur'] = $_SESSION['id_utilisateur'];
+            $data['id_fiche'] = $_POST['id_fiche'] ? htmlspecialchars($_POST['id_fiche']) : NULL;
 
-            $this->model->creerFiche($data);
+            if ($data['id_fiche'] == null){ //si la fiche n'existe pas on la crée
+                $this->model->creerFiche($data);
+            } else { //sinon on modif juste
+                $this->model->modifierFiche($data);
+            }
+            
+        }
+    }
+
+    public function recolterFicheAModifier(){
+        $idFiche = $_GET['id'] ? $_GET['id'] : '';
+        if (isset($idFiche)){
+            $conditions = [];
+            $conditions['id_fiche'] = $idFiche;
+            $ficheAModifier = $this->model->afficherFiches($conditions);
+            $ficheAModifier = $ficheAModifier[0] ?? null;
+            if ($ficheAModifier && isset($ficheAModifier['type'])) {
+                $ficheAModifier['type'] = strtoupper($ficheAModifier['type']);
+            }
+            echo $this->twig->render('creation-fiche.twig.html', [
+            'ficheAModifier' => $ficheAModifier
+        ]);
         }
     }
 }
